@@ -56,11 +56,24 @@ function reducer(state, action) {
       return { ...state, index: state.index + 1, answer: null };
 
     case "finish":
+      const score =
+        state.points > state.highscore ? state.points : state.highscore;
+
+      fetch("http://localhost:8000/highscore", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ "score" : score }),
+      })
+        .then((response) => response.json())
+        .catch((err) => console.log(err));
+
       return {
         ...state,
         status: "finished",
-        highscore:
-          state.points > state.highscore ? state.points : state.highscore,
+        highscore: score,
       };
 
     case "restart":
