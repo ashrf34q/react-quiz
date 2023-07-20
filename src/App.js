@@ -13,7 +13,7 @@ import Timer from "./components/Timer";
 
 const initialState = {
   questions: [],
-
+  
   // 'loading', 'ready', 'error', 'active', 'finished'
   status: "loading",
   index: 0,
