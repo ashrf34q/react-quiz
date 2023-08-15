@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { useQuiz } from "../contexts/QuizContext";
 
-export default function StartScreen({ numQuestions }) {
+export default function StartScreen({ numQuestions, dispatch }) {
   const [highscore, setHighScore] = useState(0);
-  const { dispatch } = useQuiz();
 
   useEffect(function () {
     fetch("http://localhost:8000/highscore")
@@ -25,3 +23,5 @@ export default function StartScreen({ numQuestions }) {
     </div>
   );
 }
+
+// export default StartScreen;
